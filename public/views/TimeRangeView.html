@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Time Range Statistics <small>Roles Undertaken</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-edit"></i> TimeRangeView
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="container-fluid" ng-controller="TimeRangeController">
+    <div id="error">
+    </div>
+    <div class="row">
+        <div class="col-md-2"><h5>Start Date</h5></div>
+        <div class="col-md-3">
+            <p class="input-group">
+              <input  type="text" class="form-control" datepicker-popup="{{format}}" ng-model="startDate" is-open="opened1" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"><h5>End Date</h5></div>
+        <div class="col-md-3">
+            <p class="input-group">
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="endDate" is-open="opened2" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+    </div>
+    <button class=".btn-primary" ng-click="getShifts()">Get Shifts</button>
+    <br/>
+    <div id="grid1" ui-grid="{ data: data }" ui-grid-pagination ng-show="data" class="grid"></div>
+</div>

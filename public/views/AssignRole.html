@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Assign Role <small>Statistics Overview</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-edit"></i> AssignRole
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="container-fluid" ng-controller="AssignRoleController">
+    <div id="error">
+        
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="input-group">
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="selectedDate" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+    </div>
+    <button class="btn-primary" ng-click="getStaffAssignment()">Get Assignments</button>
+    <div ng-repeat="(key,value) in data">
+        <button class="btn btn-primary btn-block" ng-click="populateAssignment(key)">{{ key }}</button>
+    </div>
+    <div class="container-fluid" ng-show="users.length > 0">
+        <div class="form-group row">
+            <div class="col-md-6" ng-repeat="role in roles">
+            
+                <label for="{{role}}">{{role}}</label>
+                <select class="form-control input-medium" ng-model="assignments[role]" id="{{role}}">
+                    <option ng-repeat="item in users" value="{{item.id}}">{{item.first_name}}&nbsp;{{item.last_name}}</option>
+                </select>
+            </div>
+        </div>
+        <button class="btn-success row" ng-click="saveShiftAssignment()">Save</button>
+    </div>
+    
+</div>
